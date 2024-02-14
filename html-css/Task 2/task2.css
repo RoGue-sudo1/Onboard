@@ -1,0 +1,24 @@
+.main-container{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(12,1fr);
+    column-gap: 14px;
+    align-items: center;
+}
+
+.first-item,.second-item{
+    border: 2px solid red;
+    height:60vh;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.first-item{
+    grid-column-start: 2;
+    grid-column-end: span 4;
+}
+
+.second-item{
+    grid-column-start: 6;
+    grid-column-end: span 6;
+}

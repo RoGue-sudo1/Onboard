@@ -1,0 +1,29 @@
+.main-conatiner{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: repeat(12,1fr);
+}
+
+.main-conatiner > div{
+    border: 2px solid red;
+    border-radius: 3px;
+    padding: 2px;
+}
+
+.item-4{
+    grid-row: 1/span 3;
+    grid-column: 1/span 3;
+}
+.item-3{
+    grid-row: 4/span 3;
+    grid-column: 4/span 3;
+}
+.item-2{
+    grid-row:7/span 3;
+    grid-column: 7/span 3;
+}
+.item-1{
+    grid-row: 10/span 3;
+    grid-column: 10/span 3;
+}

@@ -1,0 +1,10 @@
+.task1-container{
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
+.task1-header,.task1-main,.task1-footer{
+    border: 2px solid red;
+    padding: 8px;
+    border-radius: 5px;
+}
