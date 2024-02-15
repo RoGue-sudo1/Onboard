@@ -31,13 +31,13 @@
     grid-row: 3;
    }
    .main{
-    grid-column: 3/ span 10;
+    grid-column: 3/ span 10 ;
    }
    .ads{
     grid-column: 1/span 2;
    }
    .footer{
-    grid-column: 3/span10;
+    grid-column: 3/span 10;
    }
 }
 
