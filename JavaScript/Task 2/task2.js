@@ -1,1 +1,0 @@
-const videoContainer = document.getElementById("video-cotainer")
