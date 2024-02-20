@@ -1,12 +1,26 @@
 import { Component } from '@angular/core';
-import { RouterOutlet ,RouterLink} from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import {
+  ReactiveFormsModule,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { ChildComponent } from './child/child.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink, UserComponent, ChildComponent],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule,
+    UserComponent,
+    ChildComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -40,5 +54,16 @@ export class AppComponent {
 
   addItem($event: string) {
     this.item = $event;
+  }
+
+  favoriteFramework = '';
+
+  profileForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required,Validators.email]),
+  });
+
+  handleSubmit() {
+    alert(this.profileForm.value.name + '  |  ' + this.profileForm.value.email);
   }
 }
