@@ -1,0 +1,34 @@
+<p>Hello {{title}}</p>
+
+<h1>Condiational</h1>
+
+@if(isView){
+  <p>Hello conditions</p>
+}
+
+<h1>for loop</h1>
+
+@for(user of users; track user.id){
+  <p>{{user.name}}</p>
+}
+
+
+<h1>Property Binding</h1>
+
+<div [contentEditable]="isEditable">Editable</div>
+
+<h1>Event handling</h1>
+
+<button (click)="greet()">Greet</button>
+<section (mouseover)="onMouseOver()">Mouse Over Message :{{message}}</section>
+
+<h1>Communication with Input</h1>
+
+<app-user occupation="Angular Developer" name="Harsh Rathore"></app-user>
+
+<h1>Communication with Output</h1>
+
+<app-child (incrementCountEvent)="incrementCount($event)" (addItemEvent)="addItem($event)"/>
+<p>{{count}}</p>
+
+<p>{{item}}</p>
