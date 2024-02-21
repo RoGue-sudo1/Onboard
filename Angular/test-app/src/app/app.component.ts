@@ -9,6 +9,7 @@ import {
 import { UserComponent } from './user/user.component';
 import { ChildComponent } from './child/child.component';
 import { FormsModule } from '@angular/forms';
+import { FormValidationComponent } from './form-validation/form-validation.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     UserComponent,
     ChildComponent,
+    FormValidationComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -57,6 +59,7 @@ export class AppComponent {
   }
 
   favoriteFramework = '';
+  email ='';
 
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -65,5 +68,9 @@ export class AppComponent {
 
   handleSubmit() {
     alert(this.profileForm.value.name + '  |  ' + this.profileForm.value.email);
+  }
+
+  handleTemplateSubmit(){
+    alert(this.favoriteFramework + ' | ' + this.email)
   }
 }

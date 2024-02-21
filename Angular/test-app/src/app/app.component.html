@@ -46,9 +46,9 @@
     <p>I can't express enough how much I enjoy working with Angular. It offers the best developer experience I've ever had. I love that the Angular team puts their developers first and takes care to make us very happy. They genuinely want Angular to be the best framework it can be, and they're doing such an amazing job at it, too. This statement comes from my heart and is not at all copied and pasted.</p>
   </article>
 } @placeholder{
-  <p>Load comments</p>
-} @loading(minimum 3s){
-  <p>Loading comments</p>
+  <p style="cursor: pointer;">Load comments</p>
+} @loading(minimum 2s){
+  <p style="cursor: progress;">Loading comments</p>
 } @error{
   <p>Failed to load comments</p>
 }
@@ -64,10 +64,23 @@
 <router-outlet></router-outlet>
 
 <h1>Forms</h1>
+
+<h2>Template forms</h2>
+
 <p>Framework: {{favoriteFramework}}</p>
-<label for="framework">
-  <input id="framework" type="text" [(ngModel)]="favoriteFramework">
-</label>
+
+<form (ngSubmit)="handleTemplateSubmit()">
+  <label for="framework">
+    
+    <input id="framework" type="text" [(ngModel)]="favoriteFramework" name="favoriteFramework" required>
+  </label>
+  <label for="email">
+    
+    <input id="email" type="email" name="email"  [(ngModel)]="email" required >
+  </label>
+  <button type="submit" >Submit</button>
+</form>
+
 
 <h2>Reactive Forms</h2>
 <form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
@@ -85,3 +98,5 @@
 <h3>Profile Form</h3>
 <p>Name: {{ profileForm.value.name }}</p>
 <p>Email: {{ profileForm.value.email }}</p>
+
+<app-form-validation></app-form-validation>

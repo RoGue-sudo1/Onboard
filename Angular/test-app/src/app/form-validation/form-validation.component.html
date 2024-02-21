@@ -1,0 +1,258 @@
+<h2> Form Validations</h2>
+
+<h3>Reactive Form Validations</h3>
+
+<form class="form-container" [formGroup]="employeeDetailsForm" (ngSubmit)="onSubmit()">
+    <div class="basic-details-container">
+        <div class="basic-details-heading">Basic Details:</div>
+        <div class="basic-details-input">
+            <div class="input-container">
+                <input type="text" placeholder="Name" name="employeeName" class="employee-name" id="employee-name"
+                    formControlName="name" required />
+
+                <div class="alert"
+                    *ngIf="employeeDetailsForm.controls.name.touched && employeeDetailsForm.controls.name.status !== 'VALID'">
+                    *Name is required
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="number" placeholder="Mobile Number" name="employeeMobileNum" class="employee-number"
+                    id="employee-number" formControlName="mobileNumber" max="9999999999" required />
+
+                <div class="alert" id="alert"
+                    *ngIf="employeeDetailsForm.controls.mobileNumber.touched && employeeDetailsForm.controls.mobileNumber.status !== 'VALID'">
+                    *Enter a valid number
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="email" placeholder="Email Id" formControlName="email" name="employeeEmail"
+                    class="employee-email" id="employee-email" required />
+
+                <div class="alert"
+                    *ngIf="employeeDetailsForm.controls.email.touched && employeeDetailsForm.controls.email.status !== 'VALID'">
+                    *Enter a valid email Id
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="date" placeholder="Date-of-birth" formControlName="dateOfBirth" name="employeeDob"
+                    class="employee-dob" id="employee-dob" required />
+
+                <div class="alert"
+                    *ngIf="employeeDetailsForm.controls.dateOfBirth.touched && employeeDetailsForm.controls.dateOfBirth.status !== 'VALID'">
+                    *Date of birth is required
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="address-details-container">
+        <div class="address-details-heading">Address Details:</div>
+        <div class="address-details-input">
+
+            <div class="input-container">
+
+                <input type="text" formControlName="addressLane" placeholder="Address lane" name="employeeAddress"
+                    class="employee-address" id="employee-address" required />
+
+                <div class="alert"
+                    *ngIf="employeeDetailsForm.controls.addressLane.touched && employeeDetailsForm.controls.addressLane.status !== 'VALID'">
+                    *Address is required
+                </div>
+
+            </div>
+
+            <div class="input-container">
+                <input type="text" formControlName="city" placeholder="City" name="employeeCity" class="employee-city"
+                    id="employee-city" required />
+
+                <div class="alert"
+                    *ngIf="employeeDetailsForm.controls.city.touched && employeeDetailsForm.controls.city.status !== 'VALID'">
+                    *City is required
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="text" formControlName="state" placeholder="State" name="employeeState"
+                    class="employee-state" id="employee-state" required />
+
+                <div class="alert"
+                    *ngIf="employeeDetailsForm.controls.state.touched && employeeDetailsForm.controls.state.status !== 'VALID'">
+                    *Date of birth is required
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="number" formControlName="pincode" placeholder="Pincode" name="employeePincode"
+                    class="employee-pincode" id="employee-pincode" required />
+
+                <div class="alert"
+                    *ngIf="employeeDetailsForm.controls.pincode.touched && employeeDetailsForm.controls.pincode.status !== 'VALID'">
+                    *Pincode is required
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <div class="button-container">
+
+        <button type="submit" class="submit-button" id="submit-button"
+            [disabled]="!employeeDetailsForm.valid">Submit</button>
+    </div>
+
+</form>
+
+
+<h3>Reactive form Employee Details Form</h3>
+
+<p>Name: {{employeeDetailsForm.value.name}}</p>
+<p>Email: {{employeeDetailsForm.value.email}}</p>
+<p>Mobile Number: {{employeeDetailsForm.value.mobileNumber}}</p>
+<p>Date of birth: {{employeeDetailsForm.value.dateOfBirth}}</p>
+<p>Address Lane: {{employeeDetailsForm.value.addressLane}}</p>
+<p>City: {{employeeDetailsForm.value.city}}</p>
+<p>State: {{employeeDetailsForm.value.state}}</p>
+<p>Pincode: {{employeeDetailsForm.value.pincode}}</p>
+
+
+<h3>Template Form Validations</h3>
+
+
+<form class="form-container" #templateEmployeeDetailsFormForm="ngForm" (ngSubmit)="templateOnSubmit()">
+    <div class="basic-details-container">
+        <div class="basic-details-heading">Basic Details:</div>
+        <div class="basic-details-input">
+            <div class="input-container">
+                <input type="text" placeholder="Name" name="name" class="employee-name" id="employee-name"
+                    [(ngModel)]="templateEmployeeDetailsForm.name" #name="ngModel" required />
+
+                <div class="alert" *ngIf="name.errors?.['required'] && (name.dirty || name.touched)">
+                    *Name is required
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="number" placeholder="Mobile Number" name="mobileNumber" class="employee-number"
+                    id="employee-number" [(ngModel)]="templateEmployeeDetailsForm.mobileNumber" #mobileNumber="ngModel"
+                    pattern='^((\\+91-?) |0)?[0-9]{10}$' max="9999999999" required />
+
+                <div class="alert" id="alert"
+                    *ngIf="mobileNumber.errors?.['required'] && (mobileNumber.dirty || mobileNumber.touched)">
+                    *Number is required
+                </div>
+                <div class="alert" *ngIf="mobileNumber.errors?.['pattern']">*Number should be 10 digit</div>
+            </div>
+
+            <div class="input-container">
+                <input type="email" placeholder="Email Id" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" [(ngModel)]="templateEmployeeDetailsForm.email" #email="ngModel" name="email"
+                    class="employee-email" id="employee-email" required />
+
+                <div class="alert" id="alert" *ngIf="email.errors?.['required'] && (email.dirty || email.touched)">
+                    *Email is required
+                </div>
+
+                <div class="alert" *ngIf="email.errors?.['pattern']">
+                    *Enter a valid email Id
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="date" placeholder="Date-of-birth"  name="dateOfBirth" [(ngModel)]="templateEmployeeDetailsForm.dateOfBirth" #dateOfBirth="ngModel"
+                    class="employee-dob" id="employee-dob" required />
+
+                <div class="alert" id="alert" *ngIf="dateOfBirth.errors?.['required'] && (dateOfBirth.dirty || dateOfBirth.touched)">
+                    *Date of Birth is required
+                </div>
+
+                <div class="alert"
+                    *ngIf="dateOfBirth.errors?.['type']">
+                    *Date of birth is required
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="address-details-container">
+        <div class="address-details-heading">Address Details:</div>
+        <div class="address-details-input">
+
+            <div class="input-container">
+
+                <input type="text"  placeholder="Address lane" name="addressLane" [(ngModel)]="templateEmployeeDetailsForm.addressLane" #addressLane="ngModel"
+                    class="employee-address" id="employee-address" required />
+
+                <div class="alert"
+                    *ngIf="addressLane.errors?.['required'] && (addressLane.dirty || addressLane.touched)">
+                    *Address is required
+                </div>
+
+            </div>
+
+            <div class="input-container">
+                <input type="text"  placeholder="City" name="city" class="employee-city" [(ngModel)]="templateEmployeeDetailsForm.city" #city="ngModel"
+                    id="employee-city" required />
+
+                <div class="alert"
+                    *ngIf="city.errors?.['required'] && (city.dirty || city.touched)">
+                    *City is required
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="text"  placeholder="State" name="state" [(ngModel)]="templateEmployeeDetailsForm.state" #state="ngModel"
+                    class="employee-state" id="employee-state" required />
+
+                <div class="alert"
+                    *ngIf="state.errors?.['required'] && (state.dirty || state.touched)">
+                    *State is required
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="number"  placeholder="Pincode" name="pincode" [(ngModel)]="templateEmployeeDetailsForm.pincode" #pincode="ngModel"
+                    class="employee-pincode" id="employee-pincode" required />
+
+                <div class="alert"
+                    *ngIf="pincode.errors?.['required'] && (pincode.dirty || pincode.touched)">
+                    *Pincode is required
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <div class="button-container">
+
+        <button type="submit" class="submit-button" id="submit-button"
+            [disabled]="!templateEmployeeDetailsFormForm.form.valid">Submit</button>
+    </div>
+
+</form>
+
+
+
+<h3>Template form Employee Details Form</h3>
+
+<p>Name: {{templateEmployeeDetailsForm.name}}</p>
+<p>Email: {{templateEmployeeDetailsForm.email}}</p>
+<p>Mobile Number: {{templateEmployeeDetailsForm.mobileNumber}}</p>
+<p>Date of birth: {{templateEmployeeDetailsForm.dateOfBirth}}</p>
+<p>Address Lane: {{templateEmployeeDetailsForm.addressLane}}</p>
+<p>City: {{templateEmployeeDetailsForm.city}}</p>
+<p>State: {{templateEmployeeDetailsForm.state}}</p>
+<p>Pincode: {{templateEmployeeDetailsForm.pincode}}</p>
