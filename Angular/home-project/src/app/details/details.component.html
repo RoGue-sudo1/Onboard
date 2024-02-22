@@ -1,0 +1,39 @@
+<article class="detail-component">
+    <img class="listing-photo" [src]="housingLocation?.photo" alt="Exterior photo of {{ housingLocation?.name }}"
+        crossorigin />
+    <section class="listing-description">
+        <h2 class="listing-heading">{{ housingLocation?.name }}</h2>
+        <p class="listing-location">{{ housingLocation?.city }}, {{ housingLocation?.state }}</p>
+    </section>
+    <section class="listing-features">
+        <h2 class="section-heading">About this housing location</h2>
+        <ul>
+            <li>Units available: {{ housingLocation?.availableUnits }}</li>
+            <li>Does this location have wifi: {{ housingLocation?.wifi }}</li>
+            <li>Does this location have laundry: {{ housingLocation?.laundry }}</li>
+        </ul>
+    </section>
+    <section class="listing-apply">
+        <h2 class="section-heading">Apply now to live here</h2>
+        <form [formGroup]="applyForm" (submit)="submitApplication()">
+            <label for="first-name">First Name</label>
+            <input id="first-name" type="text" placeholder="First Name" formControlName="firstName" />
+            <div class="alert"
+                *ngIf="applyForm.controls.firstName.touched && applyForm.controls.firstName.status !== 'VALID'">*First
+                name is required
+            </div>
+            <label for="last-name">Last Name</label>
+            <input id="last-name" type="text" placeholder="Last Name" formControlName="lastName" />
+            <div class="alert"
+                *ngIf="applyForm.controls.lastName.touched && applyForm.controls.lastName.status !== 'VALID'">*Last
+                name is required
+            </div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Email Id" formControlName="email" />
+            <div class="alert"
+                *ngIf="applyForm.controls.email.touched && applyForm.controls.email.status !== 'VALID'">*Enter~ a valid email id
+            </div>
+            <button type="submit" [disabled]="!applyForm.valid" class="primary">Apply now</button>
+        </form>
+    </section>
+</article>
