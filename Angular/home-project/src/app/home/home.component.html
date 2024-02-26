@@ -1,9 +1,47 @@
-<section>
+ <section>
     <form>
-      <input type="text" placeholder="Filter by city" #filter />
+      <input type="text" placeholder="Filter by city" #filter (input)="filterResults(filter.value)" />
       <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
     </form>
   </section>
   <section class="results">
-    <app-housing-location *ngFor="let housingLocation of filteredLocationList" [housingLocation]="housingLocation"></app-housing-location>
+    @for(housingLocation of filteredLocationList; track housingLocation.id){
+       <app-housing-location [housingLocation]="housingLocation"></app-housing-location>
+    }
+
+  </section>
+
+  <section>
+    <h1 style="font-size:80px; text-align: center;">Search by signal</h1>
+    <section>
+        <form>
+          <input type="text" placeholder="Filter by city" #signalFilter (input)="signalSearch(signalFilter.value)" />
+          <button class="primary" type="button" (click)="signalSearch(signalFilter.value)">Search</button>
+        </form>
+      </section>
+      <section class="results" >
+          @for(signalLocation of signalComputedLocationList(); track signalLocation.id){
+            <app-housing-location  [housingLocation]="signalLocation"></app-housing-location>
+          }
+           
+        
+    
+      </section>
+
+      <section>
+        <h1 style="font-size:80px; text-align: center;">Search by Pipe</h1>
+        <section>
+            <form>
+              <input type="text" placeholder="Filter by city" name="pipeFilterValue" [(ngModel)]="pipeFilterValue" />
+              <button class="primary" type="button" >Search</button>
+            </form>
+          </section>
+          <section class="results">
+              @for(pipeLocation of filteredLocationList | filterSearch : pipeFilterValue  ; track pipeLocation.id){
+                <app-housing-location  [housingLocation]="pipeLocation"></app-housing-location>
+              }
+               
+            
+        
+          </section>
   </section>
