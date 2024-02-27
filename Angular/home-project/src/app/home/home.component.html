@@ -1,4 +1,8 @@
  <section>
+  <nav>
+    <a class="button" routerLink="/crisis" routerLinkActive="activeButton">Crisis</a>
+    <a class="button" routerLink = "/heroes" routerLinkActive="activeButton">Heroes</a>
+  </nav>
     <form>
       <input type="text" placeholder="Filter by city" #filter (input)="filterResults(filter.value)" />
       <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
@@ -44,4 +48,8 @@
             
         
           </section>
+          
   </section>
+  
+       
+          <router-outlet></router-outlet>

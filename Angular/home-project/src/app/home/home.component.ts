@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   Signal,
   WritableSignal,
@@ -12,14 +13,17 @@ import { HousingLocation } from '../housing-location';
 import { CommonModule } from '@angular/common';
 import { HousingService } from '../housing.service';
 import { FilterPipe } from '../filter.pipe';
-import { debounce, debounceTime, from, fromEvent, pipe } from 'rxjs';
+import { HeroesComponent } from '../heroes/heroes.component';
+import { CrisisComponent } from '../crisis/crisis.component';
+import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-home',
 
   standalone: true,
-  imports: [HousingLocationComponent, FormsModule, CommonModule, FilterPipe],
+  imports: [HousingLocationComponent, RouterLink,RouterOutlet,RouterLinkActive,FormsModule, CommonModule, FilterPipe,HeroesComponent,CrisisComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -40,6 +44,7 @@ export class HomeComponent {
   );
 
   searchText: WritableSignal<string> = signal('');
+  // @ViewChild("signalFilter") search:any;
 
 
   signalComputedLocationList: Signal<void | HousingLocation[]> = computed(
@@ -79,32 +84,40 @@ export class HomeComponent {
     );
   }
 
-  signalSearch(text: string) {
-   
-   if(text===''){
-    this.searchText.set(text);
-   }
-    const searchText2 = from(text).pipe(debounceTime(1500));
-    searchText2.subscribe(() => {
-     this.searchText.set(text)
-    });
-  }
-
-  private timerId: NodeJS.Timeout | null = null
-
+  // ngAfterViewInit(): void {
+  //     fromEvent(this.search.nativeElement,'keyup').pipe(
+  //       tap((res:any)=>console.log(res.target.value)),
+  //       debounceTime(10000)
+  //     ).subscribe((res:any)=>console.log(res.target.value)
+  //     )
+  // }
   // signalSearch(text: string) {
-  //   if (text === '') {
-  //     this.searchText.set(text);
-  //     return; 
-  //   }
-  
-  //   if(this.timerId){
-  //   clearTimeout(this.timerId); 
+   
+  //  if(text===''){
+  //   this.searchText.set(text);
+  //  }
+  //   const searchText2 = from(text).pipe(debounceTime(1500));
+  //   searchText2.subscribe(() => {
+  //    this.searchText.set(text)
+  //   });
   // }
 
-  //   this.timerId = setTimeout(() => {
-  //     this.searchText.set(text);
-  //   }, 500);
-  // }
+  private timeoutId: NodeJS.Timeout | null = null
+
+  signalSearch(text: string) {
+  
+    if (text === '') {
+      this.searchText.set(text);
+      return; 
+    }
+  
+    if(this.timeoutId){
+    clearTimeout(this.timeoutId); 
+  }
+    
+    this.timeoutId = setTimeout(() => {
+      this.searchText.set(text);
+    }, 500);
+  }
 }
 
