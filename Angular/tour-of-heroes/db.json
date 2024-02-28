@@ -1,0 +1,49 @@
+{
+  "Heroes": [
+    {
+      "id": "12",
+      "name": "Dr. Nice",
+      "isActive": true
+    },
+    {
+      "id": "13",
+      "name": "Bombasto",
+      "isActive": true
+    },
+    {
+      "id": "14",
+      "name": "Celeritas",
+      "isActive": true
+    },
+    {
+      "id": "15",
+      "name": "Magneta",
+      "isActive": true
+    },
+    {
+      "id": "16",
+      "name": "RubberMan",
+      "isActive": true
+    },
+    {
+      "id": "17",
+      "name": "Dynama",
+      "isActive": true
+    },
+    {
+      "id": "18",
+      "name": "Dr. IQ",
+      "isActive": true
+    },
+    {
+      "id": "19",
+      "name": "Magma",
+      "isActive": true
+    },
+    {
+      "id": "20",
+      "name": "Tornado",
+      "isActive": true
+    }
+  ]
+}
