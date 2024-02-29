@@ -74,6 +74,7 @@ export class HeoresServiceService {
   }
 
   deleteHero(hero:Hero): Observable<Hero> {
+    console.log(hero.id)
     const url = `${this.heroesUrl}/${hero.id}`;
     const updatedHero = {...hero,isActive:false}
 

@@ -1,22 +1,30 @@
-<h2>My Heroes</h2>
-<ul class="heroes">
-    @for(hero of heroes;track hero.id){
-   @if(hero.isActive){ <li>
-        <a routerLink="/detail/{{hero.id}}">
-            <span class="badge">{{hero.id}}</span> {{hero.name}}
-        </a>
+<div class="container">
+    <h2>My Heroes</h2>
 
-    </li>
-    <button type="button" class="delete" title="delete hero" (click)="delete(hero)">Delete</button>
-   }}
+    <ul class="heroes">
+        @for(hero of heroes;track hero.id){
 
-</ul>
-<div>
-    <label for="new-hero">Hero name: </label>
-    <input id="new-hero" #heroName />
+        @if(hero.isActive){
+        <div class="heroes-item">
+            <li>
+                <a routerLink="/detail/{{hero.id}}">
+                    <span class="badge">{{hero.id}}</span> {{hero.name}}
+                </a>
 
-    <button type="button" class="add-button" (click)="add(heroName.value); heroName.value=''">
-        Add hero
-    </button>
+            </li>
+            <button type="button" class="delete" title="delete hero" (click)="delete(hero)">Delete</button>
+        </div>
 
+        }}
+
+    </ul>
+    <div>
+        <label for="new-hero">Hero name: </label>
+        <input id="new-hero" #heroName />
+
+        <button type="button" class="add-button" (click)="add(heroName.value); heroName.value=''">
+            Add hero
+        </button>
+
+    </div>
 </div>
