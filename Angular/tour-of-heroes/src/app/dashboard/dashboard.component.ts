@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
+
 import { HeoresServiceService } from '../heores-service.service';
 import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,MatButtonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

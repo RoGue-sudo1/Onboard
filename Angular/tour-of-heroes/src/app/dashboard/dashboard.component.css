@@ -17,8 +17,10 @@ h2 {
     align-content: flex-start;
     align-items: flex-start;
   }
-  
-  a {
+
+
+/*   
+  a{
     background-color: #3f525c;
     border-radius: 2px;
     padding: 1rem;
@@ -32,10 +34,17 @@ h2 {
     margin: .5rem auto;
     box-sizing: border-box;
   
-    /* flexbox */
+
     order: 0;
     flex: 0 1 auto;
     align-self: auto;
+  }
+   */
+
+    
+  a:hover {
+    color: white;
+    background-color: rgb(170, 170, 238);
   }
   
   @media (min-width: 600px) {
@@ -44,7 +53,4 @@ h2 {
       box-sizing: content-box;
     }
   }
-  
-  a:hover {
-    background-color: #000;
-  }
+ 

@@ -1,30 +1,44 @@
 <div class="container">
-    <h2>My Heroes</h2>
+    <div class="new-hero">
+        <h2 style="margin: 10px;">Add a new hero</h2>
 
-    <ul class="heroes">
-        @for(hero of heroes;track hero.id){
-
-        @if(hero.isActive){
-        <div class="heroes-item">
-            <li>
-                <a routerLink="/detail/{{hero.id}}">
-                    <span class="badge">{{hero.id}}</span> {{hero.name}}
-                </a>
-
-            </li>
-            <button type="button" class="delete" title="delete hero" (click)="delete(hero)">Delete</button>
+        <div class="add-hero">
+            <mat-form-field class="example-form-field" style="margin: 10px;">
+                <mat-label>Hero Name</mat-label>
+                <input matInput type="text" #heroName />
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="add(heroName.value)">Add hero</button>
         </div>
 
-        }}
-
-    </ul>
-    <div>
-        <label for="new-hero">Hero name: </label>
-        <input id="new-hero" #heroName />
-
-        <button type="button" class="add-button" (click)="add(heroName.value); heroName.value=''">
-            Add hero
-        </button>
-
     </div>
+
+    <div class="all-heroes">
+        <h2 style="margin: 10px;">My Heroes</h2>
+
+        <div class="heroes-item">
+            @for(hero of heroes;track hero.id){
+
+            @if(hero.isActive){
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title routerLink="/detail/{{hero.id}}"
+                        style="cursor: pointer;">{{hero.name}}</mat-card-title>
+                    <mat-card-subtitle>Id: {{hero.id}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions>
+                    <button mat-raised-button (click)="delete(hero)" color="primary">Delete</button>
+
+                </mat-card-actions>
+            </mat-card>
+
+
+
+            }}
+
+        </div>
+    </div>
+
+
+
 </div>
