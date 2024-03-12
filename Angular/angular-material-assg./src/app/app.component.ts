@@ -5,6 +5,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { ButtonComponent } from './button/button.component';
 import { ChipsComponent } from './chips/chips.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { ExpnasionPanelComponent } from './expnasion-panel/expnasion-panel.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { DialogComponent } from './dialog/dialog.component';
     ButtonComponent,
     ChipsComponent,
     DialogComponent,
+    ExpnasionPanelComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
