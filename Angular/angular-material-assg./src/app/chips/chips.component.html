@@ -1,0 +1,39 @@
+<div class="basic-chip">
+    <h3>Basic Chip</h3>
+    <mat-chip-listbox aria-label="Fish selection">
+        <mat-chip-option>One fish</mat-chip-option>
+        <mat-chip-option>Two fish</mat-chip-option>
+        <mat-chip-option color="accent" selected>Accent fish</mat-chip-option>
+        <mat-chip-option color="warn">Warn fish</mat-chip-option>
+    </mat-chip-listbox>
+</div>
+<div class="stacked Chip">
+    <h3>Stacked Chip</h3>
+    <mat-chip-listbox aria-label="Color Selection">
+        @for(chip of availableColors; track chip){
+        <mat-chip-option style="max-width: 200px;" selected [color]="chip.color">{{chip.name}}</mat-chip-option>
+        }
+    </mat-chip-listbox>
+</div>
+<div class="input-chips" style="width: 100%;">
+    <h3>Chips with Input</h3>
+    <mat-form-field style="width:50%;">
+        <mat-label>Favorite Fruits</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Enter fruits">
+            @for(fruit of fruits; track fruit){
+            <mat-chip-row (removed)="remove(fruit)" [editable]="true" (edited)=" edit(fruit,$event)">
+                {{fruit.name}}
+
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip-row>
+            }
+            <input style="width: 200px;" placeholder="New Fruit..." 
+            [matChipInputFor]="chipGrid"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)"/>
+                
+        </mat-chip-grid>
+    </mat-form-field>
+</div>

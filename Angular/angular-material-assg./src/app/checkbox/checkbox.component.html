@@ -1,0 +1,24 @@
+<div class="Checkbox-radio-container">
+    <h3>Checkbox Configuration</h3>
+    <section class="checked-intermediate-container">
+        <mat-checkbox [(ngModel)]="checked">Checked</mat-checkbox>
+        <mat-checkbox [(ngModel)]="indeterminate">indeterminate</mat-checkbox>
+    </section>
+    <br/>
+    <h3>Radio Button</h3>
+    <section class="radio-container">
+        <label>Align:</label>
+        <mat-radio-group [(ngModel)]="labelPosition">
+            <mat-radio-button value="after">After</mat-radio-button>
+            <mat-radio-button value="before">Before</mat-radio-button>
+        </mat-radio-group>
+    </section>
+    <br/>
+    <h3>Disabled</h3>
+    <mat-checkbox [(ngModel)]="disabled">Disabled</mat-checkbox>
+     <br/>
+    <h3>Result</h3>
+    <mat-checkbox [(ngModel)]="checked" [(indeterminate)]="indeterminate"  [disabled]="disabled"
+        [labelPosition]="labelPosition">I'm a Checkbox</mat-checkbox>
+
+</div>
