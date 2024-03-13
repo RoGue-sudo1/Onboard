@@ -1,0 +1,20 @@
+Control Value: {{myControl.value || 'empty'}}
+
+<form>
+    <mat-form-field>
+        <mat-label>Choose a number</mat-label>
+        <input #input type="text" 
+               placeholder="Pick One"
+               matInput 
+               [formControl]="myControl" 
+               [matAutocomplete]="auto"
+               (input)="filter()" 
+               (focus)="filter()"
+        >
+        <mat-autocomplete requireSelection #auto="matAutocomplete">
+            @for(option of filteredOptions; track option){
+                <mat-option [value]="option">{{option}}</mat-option>
+            }
+        </mat-autocomplete>
+    </mat-form-field>
+</form>

@@ -9,6 +9,7 @@ import { ExpnasionPanelComponent } from './expnasion-panel/expnasion-panel.compo
 import { StepperComponent } from './stepper/stepper.component';
 import { TableComponent } from './table/table.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ import { TabsComponent } from './tabs/tabs.component';
     StepperComponent,
     ExpnasionPanelComponent,
     TableComponent,
-    TabsComponent
+    TabsComponent,
+    AutocompleteComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
