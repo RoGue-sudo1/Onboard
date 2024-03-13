@@ -8,6 +8,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { ExpnasionPanelComponent } from './expnasion-panel/expnasion-panel.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { TableComponent } from './table/table.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import { TableComponent } from './table/table.component';
     DialogComponent,
     StepperComponent,
     ExpnasionPanelComponent,
-    TableComponent
+    TableComponent,
+    TabsComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
