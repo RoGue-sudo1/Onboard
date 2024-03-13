@@ -7,6 +7,7 @@ import { ChipsComponent } from './chips/chips.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ExpnasionPanelComponent } from './expnasion-panel/expnasion-panel.component';
 import { StepperComponent } from './stepper/stepper.component';
+import { TableComponent } from './table/table.component';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ import { StepperComponent } from './stepper/stepper.component';
     DialogComponent,
     StepperComponent,
     ExpnasionPanelComponent,
-
+    TableComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
