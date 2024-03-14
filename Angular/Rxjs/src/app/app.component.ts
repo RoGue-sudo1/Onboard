@@ -6,6 +6,7 @@ import { TransformationOperatorsComponent } from './transformation-operators/tra
 import { CombinationalOperatorsComponent } from './combinational-operators/combinational-operators.component';
 import { ErrorOperatorsComponent } from './error-operators/error-operators.component';
 import { MulticastingOperatorsComponent } from './multicasting-operators/multicasting-operators.component';
+import { FilteringOperatorsComponent } from './filtering-operators/filtering-operators.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { MulticastingOperatorsComponent } from './multicasting-operators/multica
     CombinationalOperatorsComponent,
     ErrorOperatorsComponent,
     MulticastingOperatorsComponent,
+    FilteringOperatorsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
