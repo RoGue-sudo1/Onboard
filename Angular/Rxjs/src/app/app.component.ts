@@ -4,6 +4,7 @@ import { OperatorsComponent } from './creation-operators/operators.component';
 import { ConditionalOperatorsComponent } from './conditional-operators/conditional-operators.component';
 import { TransformationOperatorsComponent } from './transformation-operators/transformation-operators.component';
 import { CombinationalOperatorsComponent } from './combinational-operators/combinational-operators.component';
+import { ErrorOperatorsComponent } from './error-operators/error-operators.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import { CombinationalOperatorsComponent } from './combinational-operators/combi
     OperatorsComponent,
     ConditionalOperatorsComponent,
     TransformationOperatorsComponent,
-    CombinationalOperatorsComponent
+    CombinationalOperatorsComponent,
+    ErrorOperatorsComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
