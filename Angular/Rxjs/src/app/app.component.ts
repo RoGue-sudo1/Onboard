@@ -5,6 +5,7 @@ import { ConditionalOperatorsComponent } from './conditional-operators/condition
 import { TransformationOperatorsComponent } from './transformation-operators/transformation-operators.component';
 import { CombinationalOperatorsComponent } from './combinational-operators/combinational-operators.component';
 import { ErrorOperatorsComponent } from './error-operators/error-operators.component';
+import { MulticastingOperatorsComponent } from './multicasting-operators/multicasting-operators.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ import { ErrorOperatorsComponent } from './error-operators/error-operators.compo
     ConditionalOperatorsComponent,
     TransformationOperatorsComponent,
     CombinationalOperatorsComponent,
-    ErrorOperatorsComponent
+    ErrorOperatorsComponent,
+    MulticastingOperatorsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
