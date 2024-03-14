@@ -8,10 +8,9 @@ describe('ConditionalOperatorsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConditionalOperatorsComponent]
-    })
-    .compileComponents();
-    
+      imports: [ConditionalOperatorsComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ConditionalOperatorsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

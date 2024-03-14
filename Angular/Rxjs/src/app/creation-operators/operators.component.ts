@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   EMPTY,
   Observable,
@@ -23,9 +23,8 @@ import { ajax } from 'rxjs/ajax';
   templateUrl: './operators.component.html',
   styleUrl: './operators.component.css',
 })
-export class OperatorsComponent {
-  constructor() {
-
+export class OperatorsComponent implements OnInit {
+  ngOnInit() {
     console.log('Creation Operators');
     // Creation Operators
     /* 1. ajax (Create an observable for an Ajax request with 

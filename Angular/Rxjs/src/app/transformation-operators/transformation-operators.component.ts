@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   buffer,
   concatMap,
@@ -23,8 +23,8 @@ import {
   templateUrl: './transformation-operators.component.html',
   styleUrl: './transformation-operators.component.css',
 })
-export class TransformationOperatorsComponent {
-  constructor() {
+export class TransformationOperatorsComponent implements OnInit {
+  ngOnInit() {
     console.log('Transformation Operators');
 
     // 1. buffer() (Collects values from the past as an array, and emits that array only when another observable emits.)
@@ -167,32 +167,37 @@ export class TransformationOperatorsComponent {
       .pipe(mapTo('Hello World!'))
       .subscribe((val) => console.log('MapTo:', val));
 
+    // 7. mergeMap()
+    /*
+     * Projects each source value to an Observable which is merged in the output Observable.\
+     * It is a combination of map and mergeAll.
+     * It is used when we want to merge the output of the inner observable with the outer observable.
+     * It is used when we want to handle asyncronous behavious
+     * map() is only for handling synchronous behaviour.
+     */
 
-  // 7. mergeMap() 
-            /*
-                * Projects each source value to an Observable which is merged in the output Observable.\
-                * It is a combination of map and mergeAll.
-                * It is used when we want to merge the output of the inner observable with the outer observable.
-                * It is used when we want to handle asyncronous behavious 
-                * map() is only for handling synchronous behaviour.
-            */
+    const mergeMapPromise = (val: any) =>
+      new Promise((resolve) => resolve(val + ' World from promise!'));
 
-          const mergeMapPromise = (val:any)=> new Promise((resolve) => resolve(val + ' World from promise!'));
+    const mergeMapSource = of('Hello');
 
-          const mergeMapSource = of('Hello')
+    const mergeMapExample = mergeMapSource.pipe(
+      mergeMap((val) => mergeMapPromise(val))
+    );
 
-          const mergeMapExample = mergeMapSource.pipe(mergeMap((val)=>mergeMapPromise(val)))
-
-          const mergeMapSubscribe = mergeMapExample.subscribe( val => console.log('MergeMap:', val))
+    const mergeMapSubscribe = mergeMapExample.subscribe((val) =>
+      console.log('MergeMap:', val)
+    );
 
     // 8. switchMap() (Projects each source value to an Observable which is merged in the output Observable, emitting values only from the most recently projected Observable.)
-          
-          const switchMapSource = fromEvent(document,'click')
-          const switchMapExample = switchMapSource.pipe(switchMap(()=>interval(1000)))
 
-          const switchMapSubscribe = switchMapExample.subscribe(val => console.log('SwitchMap:', val))  
+    const switchMapSource = fromEvent(document, 'click');
+    const switchMapExample = switchMapSource.pipe(
+      switchMap(() => interval(1000))
+    );
+
+    const switchMapSubscribe = switchMapExample.subscribe((val) =>
+      console.log('SwitchMap:', val)
+    );
   }
-
-
-
 }
