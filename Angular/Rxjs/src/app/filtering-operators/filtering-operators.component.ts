@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  ReplaySubject,
   debounce,
   distinct,
   distinctUntilChanged,
@@ -76,4 +77,18 @@ export class FilteringOperatorsComponent implements OnInit {
 
     const skipObs = numArrayObs.pipe(skip(5)).subscribe(console.log);
   }
+  // ngOnInit(): void {
+  //     console.log('Replay Subject');
+
+  //     const sub = new ReplaySubject(3)
+  //     sub.next(1)
+  //     sub.next(2)
+
+  //     // sub.subscribe(console.log)
+  //     sub.next(3)
+  //     sub.next(4)
+
+  //     sub.subscribe(console.log)
+  //     sub.next(5)
+  // } // Replay Subject
 }
