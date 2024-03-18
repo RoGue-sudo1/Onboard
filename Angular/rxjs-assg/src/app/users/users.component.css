@@ -1,4 +1,13 @@
 .users-container{
+    width: 50%;
     display: flex;
     flex-wrap: wrap; 
+}
+.user-engagement-graph-container{
+    width: 50%;
+    
+}
+.main-container{
+    display: flex;
+    
 }

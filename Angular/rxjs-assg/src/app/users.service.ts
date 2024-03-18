@@ -1,23 +1,16 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import {
-  BehaviorSubject,
-  Observable,
-  catchError,
-  filter,
-  first,
-  map,
-  of,
-  shareReplay,
-  tap,
-} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  userSubjects$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
-  users$: User[] = [];
+  private userSubjects$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>(
+    []
+  );
+
+  private usersCopy: User[] = [];
 
   private users: User[] = [
     {
@@ -92,17 +85,14 @@ export class UsersService {
     },
   ];
 
+ 
+
   constructor() {
     this.userSubjects$.next(this.users);
-    this.userSubjects$.subscribe((val) => (this.users$ = val));
-  }
-
-  getUser(userId: number): Observable<User | undefined> {
-    return this.userSubjects$.asObservable().pipe(
-      map((users) => users.find((user) => user.id === userId)),
-      filter((user) => user !== undefined),
-      first()
-    );
+    this.userSubjects$.subscribe((users) => {
+      this.usersCopy = users;
+    });
+ 
   }
 
   getAllUsers(): BehaviorSubject<User[]> {
@@ -110,7 +100,7 @@ export class UsersService {
   }
 
   increaseLikeCount(userId: number) {
-    const updatedUsers = this.users$.map((user) => {
+    const updatedUsers = this.usersCopy.map((user) => {
       if (user.id === userId) {
         return { ...user, likeCount: user.likeCount + 1 };
       }
@@ -121,7 +111,7 @@ export class UsersService {
   }
 
   increaseShareCount(userId: number) {
-    const updatedUsers = this.users$.map((user) => {
+    const updatedUsers = this.usersCopy.map((user) => {
       if (user.id === userId) {
         return { ...user, shareCount: user.shareCount + 1 };
       }
@@ -132,7 +122,7 @@ export class UsersService {
   }
 
   increaseSubscribeCount(userId: number) {
-    const updatedUsers = this.users$.map((user) => {
+    const updatedUsers = this.usersCopy.map((user) => {
       if (user.id === userId) {
         return { ...user, subscribeCount: user.subscribeCount + 1 };
       }

@@ -14,7 +14,7 @@ import { UserChartComponent } from '../user-chart/user-chart.component';
   styleUrl: './users.component.css',
 })
 export class UsersComponent {
-  users: User[] = [];
+  
   users$: BehaviorSubject<User[]>;
 
   constructor(public userService: UsersService) {

@@ -1,7 +1,7 @@
 import { Component,  Input,  OnChanges,  OnInit, SimpleChanges } from '@angular/core';
 import { User } from '../user';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
-import { AsyncPipe } from '@angular/common';
+
 
 
 interface ChartData {
@@ -16,7 +16,7 @@ interface ChartData {
 @Component({
   selector: 'app-user-chart',
   standalone: true,
-  imports: [CanvasJSAngularChartsModule,AsyncPipe],
+  imports: [CanvasJSAngularChartsModule],
   templateUrl: './user-chart.component.html',
   styleUrl: './user-chart.component.css'
 })
@@ -53,7 +53,7 @@ chartOptions  = {
 ngOnChanges(changes: SimpleChanges): void {
   if (changes['chartUsers'] && changes['chartUsers'].currentValue) {
     this.updateDataPoints();
-    this.updateChartOptions();
+    
   }
 }
 
@@ -68,7 +68,8 @@ private updateDataPoints(){
     this.shareDataPoints.push({y:user.shareCount,label:user.name})
     this.subscribeDataPoints.push({y:user.subscribeCount,label:user.name})
   }
-
+  this.updateChartOptions();
+  
 }
 
 private updateChartOptions(): void {
