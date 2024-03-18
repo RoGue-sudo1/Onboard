@@ -22,7 +22,7 @@ interface ChartData {
 })
 export class UserChartComponent implements OnChanges {
 
-@Input() chartUsers: User[] | null =[]
+@Input() chartUsers: User[] | null = []
 
 likeDataPoints: { y: number; label: string }[] = [];
 shareDataPoints: { y: number; label: string }[] = [];
@@ -63,14 +63,11 @@ private updateDataPoints(){
   this.shareDataPoints = []
   this.subscribeDataPoints = []
 
-
   for(let user of this.chartUsers ! ){
     this.likeDataPoints.push({y:user.likeCount,label:user.name})
     this.shareDataPoints.push({y:user.shareCount,label:user.name})
     this.subscribeDataPoints.push({y:user.subscribeCount,label:user.name})
   }
-
-
 
 }
 
@@ -100,17 +97,8 @@ private updateChartOptions(): void {
     }
   ] 
  
-
   this.chartOptions = {...this.chartOptions, data}
 
 }
-
-
-
-
-
-
-
-
 
 }

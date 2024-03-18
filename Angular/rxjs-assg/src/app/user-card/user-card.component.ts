@@ -19,33 +19,30 @@ import { AsyncPipe } from '@angular/common';
     MatDividerModule,
     MatBadgeModule,
     AsyncPipe,
-
   ],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.css',
 })
-export class UserCardComponent  {
-  @Input() user:User = {name:'',id:0,likeCount:0,shareCount:0,subscribeCount:0}
- 
+export class UserCardComponent {
+  @Input() user: User = {
+    name: '',
+    id: 0,
+    likeCount: 0,
+    shareCount: 0,
+    subscribeCount: 0,
+  };
 
-
-  like(id:number){
- 
-    this.userService.increaseLikeCount(id)
+  like(id: number) {
+    this.userService.increaseLikeCount(id);
   }
 
-  share(id:number){ 
-   
-    this.userService.increaseShareCount(id)
+  share(id: number) {
+    this.userService.increaseShareCount(id);
   }
 
-  subscribe(id:number){
-    this.userService.increaseSubscribeCount(id)
+  subscribe(id: number) {
+    this.userService.increaseSubscribeCount(id);
   }
 
-
-
-  constructor(private userService:UsersService) {
-
-  }
+  constructor(private userService: UsersService) {}
 }
