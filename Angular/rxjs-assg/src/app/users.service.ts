@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, merge } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +17,6 @@ export class UsersService {
   userSubscribe$ = new BehaviorSubject<
     { id: number; subscribeCount: number }[]
   >([]);
-
-  private usersCopy: User[] = [];
 
   private users: User[] = [
     {
@@ -94,12 +92,10 @@ export class UsersService {
   ];
 
   constructor() {
-    this.userSubjects$.next(this.users);
-    this.userSubjects$.subscribe((users) => {
-      this.usersCopy = users;
-    });
-
+    this.updateUserSubjects();
+    // this.userSubjects$.next(this.users);
     this.updateUserCounts();
+    // this.intializeUsers();
   }
 
   getAllUsers(): BehaviorSubject<User[]> {
@@ -107,67 +103,41 @@ export class UsersService {
   }
 
   increaseLikeCount(userId: number) {
-    // const updatedUsers = this.usersCopy.map((user) => {
-    //   if (user.id === userId) {
-    //     return { ...user, likeCount: user.likeCount + 1 };
-    //   }
-    //   return user;
-    // });
-
-    // this.userSubjects$.next(updatedUsers);
-
-    // const updatedLike = this.userLike.map((like) => {
-    //   if (like.id === userId) {
-    //     return { ...like, likeCount: like.likeCount + 1 };
-    //   }
-    //   return like;
-    // });
-
-    // this.userLike$.next(updatedLike);
     this.updateCount(this.userLike$, userId, 'likeCount');
   }
 
   increaseShareCount(userId: number) {
-    // const updatedUsers = this.usersCopy.map((user) => {
-    //   if (user.id === userId) {
-    //     return { ...user, shareCount: user.shareCount + 1 };
-    //   }
-    //   return user;
-    // });
-
-    // this.userSubjects$.next(updatedUsers);
-
-    // const updatedShare = this.userShare.map((share) => {
-    //   if (share.id === userId) {
-    //     return { ...share, shareCount: share.shareCount + 1 };
-    //   }
-    //   return share;
-    // });
-
-    // this.userShare$.next(updatedShare);
     this.updateCount(this.userShare$, userId, 'shareCount');
   }
 
   increaseSubscribeCount(userId: number) {
-    // const updatedUsers = this.usersCopy.map((user) => {
-    //   if (user.id === userId) {
-    //     return { ...user, subscribeCount: user.subscribeCount + 1 };
-    //   }
-    //   return user;
-    // });
-
-    // this.userSubjects$.next(updatedUsers);
-
-    // const updatedSubscribe = this.userSubscribe.map((subscribe) => {
-    //   if (subscribe.id === userId) {
-    //     return { ...subscribe, subscribeCount: subscribe.subscribeCount + 1 };
-    //   }
-    //   return subscribe;
-    // })
-
-    // this.userSubscribe$.next(updatedSubscribe);
-
     this.updateCount(this.userSubscribe$, userId, 'subscribeCount');
+  }
+
+  private updateUserSubjects() {
+    combineLatest([this.userLike$, this.userShare$, this.userSubscribe$])
+      .pipe(
+        map(([likeCounts, shareCounts, subscribeCounts]) => {
+          const likeMap = new Map(
+            likeCounts.map((item) => [item.id, item.likeCount])
+          );
+          const shareMap = new Map(
+            shareCounts.map((item) => [item.id, item.shareCount])
+          );
+          const subscribeMap = new Map(
+            subscribeCounts.map((item) => [item.id, item.subscribeCount])
+          );
+          return this.users.map((user) => ({
+            ...user,
+            likeCount: likeMap.get(user.id) || 0,
+            shareCount: shareMap.get(user.id) || 0,
+            subscribeCount: subscribeMap.get(user.id) || 0,
+          }));
+        })
+      )
+      .subscribe((mergedUsers) => {
+        this.userSubjects$.next(mergedUsers);
+      });
   }
 
   private updateUserCounts() {
@@ -184,6 +154,10 @@ export class UsersService {
       }))
     );
   }
+
+  // private intializeUsers(){
+  //   this.userSubjects$.next([...this.users]);
+  // }
 
   private updateCount(
     behaviorSubject: BehaviorSubject<any[]>,
