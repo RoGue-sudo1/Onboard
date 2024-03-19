@@ -104,6 +104,7 @@ export class UsersService {
 
   increaseLikeCount(userId: number) {
     this.updateCount(this.userLike$, userId, 'likeCount');
+   
   }
 
   increaseShareCount(userId: number) {
@@ -155,9 +156,6 @@ export class UsersService {
     );
   }
 
-  // private intializeUsers(){
-  //   this.userSubjects$.next([...this.users]);
-  // }
 
   private updateCount(
     behaviorSubject: BehaviorSubject<any[]>,
@@ -172,4 +170,6 @@ export class UsersService {
     });
     behaviorSubject.next(updatedCounts);
   }
+
+
 }
