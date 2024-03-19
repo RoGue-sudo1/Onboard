@@ -32,10 +32,6 @@ export class UserCardComponent {
     subscribeCount: 0,
   };
 
-
-  // like(id: number) {
-  //   this.userService.increaseLikeCount(id).subscribe();
-  // }
   like(id: number) {
     this.userService.increaseLikeCount(id);
   }
