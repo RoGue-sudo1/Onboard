@@ -15,11 +15,8 @@ import { UserChartComponent } from '../user-chart/user-chart.component';
 })
 export class UsersComponent {
   users$: BehaviorSubject<User[]>;
- 
 
   constructor(public userService: UsersService) {
     this.users$ = this.userService.getAllUsers();
   }
-
- 
 }

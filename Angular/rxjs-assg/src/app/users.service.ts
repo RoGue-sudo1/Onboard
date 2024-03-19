@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { BehaviorSubject, map} from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -96,24 +96,19 @@ export class UsersService {
   }
 
   private updateUserSubjects() {
-    this.actionEvent$.pipe(map((action) => {
-      if (action.event === 'likeCount') {
-        this.updateUserCounts(
-          action.event,
-          action.id
-        );
-      } else if (action.event === 'shareCount') {
-        this.updateUserCounts(
-          action.event,
-          action.id
-        );
-      } else if (action.event === 'subscribeCount') {
-        this.updateUserCounts(
-          action.event,
-          action.id
-        );
-      }
-    })).subscribe();
+    this.actionEvent$
+      .pipe(
+        map((action) => {
+          if (action.event === 'likeCount') {
+            this.updateUserCounts(action.event, action.id);
+          } else if (action.event === 'shareCount') {
+            this.updateUserCounts(action.event, action.id);
+          } else if (action.event === 'subscribeCount') {
+            this.updateUserCounts(action.event, action.id);
+          }
+        })
+      )
+      .subscribe();
   }
 
   private updateUserCounts(
@@ -134,6 +129,4 @@ export class UsersService {
 
     this.userSubjects$.next(updatedUsers);
   }
-
-
 }

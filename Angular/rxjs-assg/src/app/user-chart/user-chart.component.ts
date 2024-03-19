@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { User } from '../user';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
@@ -57,14 +51,12 @@ export class UserChartComponent implements OnChanges {
     }
   }
 
-
   private updateDataPoints() {
     this.likeDataPoints = [];
     this.shareDataPoints = [];
     this.subscribeDataPoints = [];
 
-
-    if(this.chartUsers){
+    if (this.chartUsers) {
       this.chartUsers.forEach((user) => {
         this.likeDataPoints.push({ y: user.likeCount, label: user.name });
         this.shareDataPoints.push({ y: user.shareCount, label: user.name });
@@ -74,7 +66,7 @@ export class UserChartComponent implements OnChanges {
         });
       });
     }
-   
+
     this.updateChartOptions();
   }
 
