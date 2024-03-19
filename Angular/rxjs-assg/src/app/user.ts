@@ -6,3 +6,4 @@ export interface User {
     shareCount:number,
     subscribeCount:number,
 }
+

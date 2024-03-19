@@ -57,6 +57,7 @@ export class UserChartComponent implements OnChanges {
     }
   }
 
+
   private updateDataPoints() {
     this.likeDataPoints = [];
     this.shareDataPoints = [];

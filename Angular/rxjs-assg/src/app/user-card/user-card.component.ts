@@ -33,15 +33,16 @@ export class UserCardComponent {
   };
 
   like(id: number) {
-    this.userService.increaseLikeCount(id);
+    this.userService.actionEvent$.next({event:'likeCount',id:id})
+
   }
 
   share(id: number) {
-    this.userService.increaseShareCount(id);
+    this.userService.actionEvent$.next({event:'shareCount',id:id})
   }
 
   subscribe(id: number) {
-    this.userService.increaseSubscribeCount(id);
+    this.userService.actionEvent$.next({event:'subscribeCount',id:id})
   }
 
   constructor(private userService: UsersService) {}
