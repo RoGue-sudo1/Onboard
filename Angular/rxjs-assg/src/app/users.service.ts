@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { BehaviorSubject, Observable, combineLatest, map, merge } from 'rxjs';
+import { BehaviorSubject, map} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -96,7 +96,7 @@ export class UsersService {
   }
 
   private updateUserSubjects() {
-    this.actionEvent$.subscribe((action) => {
+    this.actionEvent$.pipe(map((action) => {
       if (action.event === 'likeCount') {
         this.updateUserCounts(
           action.event,
@@ -113,7 +113,7 @@ export class UsersService {
           action.id
         );
       }
-    });
+    })).subscribe();
   }
 
   private updateUserCounts(

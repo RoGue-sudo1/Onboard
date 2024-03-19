@@ -2,7 +2,7 @@ import {
   Component,
   Input,
   OnChanges,
-  OnInit,
+
   SimpleChanges,
 } from '@angular/core';
 import { User } from '../user';
@@ -63,14 +63,18 @@ export class UserChartComponent implements OnChanges {
     this.shareDataPoints = [];
     this.subscribeDataPoints = [];
 
-    for (let user of this.chartUsers!) {
-      this.likeDataPoints.push({ y: user.likeCount, label: user.name });
-      this.shareDataPoints.push({ y: user.shareCount, label: user.name });
-      this.subscribeDataPoints.push({
-        y: user.subscribeCount,
-        label: user.name,
+
+    if(this.chartUsers){
+      this.chartUsers.forEach((user) => {
+        this.likeDataPoints.push({ y: user.likeCount, label: user.name });
+        this.shareDataPoints.push({ y: user.shareCount, label: user.name });
+        this.subscribeDataPoints.push({
+          y: user.subscribeCount,
+          label: user.name,
+        });
       });
     }
+   
     this.updateChartOptions();
   }
 
