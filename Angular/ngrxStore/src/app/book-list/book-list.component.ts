@@ -6,10 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './book-list.component.html',
-  styleUrl: './book-list.component.css'
+  styleUrl: './book-list.component.css',
 })
 export class BookListComponent {
-@Input() books: ReadonlyArray<Book>  =[]
+  @Input() books: ReadonlyArray<Book> = [];
 
-@Output() add = new EventEmitter<string>()
+  @Output() add = new EventEmitter<string>();
 }

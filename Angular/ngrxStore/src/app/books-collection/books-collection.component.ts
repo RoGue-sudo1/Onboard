@@ -6,10 +6,10 @@ import { Book } from '../book';
   standalone: true,
   imports: [],
   templateUrl: './books-collection.component.html',
-  styleUrl: './books-collection.component.css'
+  styleUrl: './books-collection.component.css',
 })
 export class BooksCollectionComponent {
-@Input() books: ReadonlyArray<Book>  =[]
+  @Input() books: ReadonlyArray<Book> = [];
 
-@Output() remove = new EventEmitter<string>()
+  @Output() remove = new EventEmitter<string>();
 }
