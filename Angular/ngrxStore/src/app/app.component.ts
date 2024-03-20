@@ -9,11 +9,12 @@ import {
   selectBooks,
 } from './ngrx/selector/books.selector';
 import { BooksActions, BooksApiActions } from './ngrx/actions/books.actions';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BookListComponent, BooksCollectionComponent],
+  imports: [RouterOutlet, BookListComponent, BooksCollectionComponent,AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -36,6 +37,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.booksService.getBooks().subscribe((books) => {
       this.store.dispatch(BooksApiActions.retrievedBookList({ books }));
+     
     });
+
+   
+    
+
+    
   }
 }

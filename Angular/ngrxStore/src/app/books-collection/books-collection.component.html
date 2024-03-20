@@ -1,6 +1,8 @@
-@for(book of books;track book.id){
-<div class="book-item">
-    <p>{{book.volumeInfo.title}}</p><span> by {{book.volumeInfo.authors}}</span>
-    <button (click)="remove.emit(book.id)" >Remove from Collection</button>
-</div>
+@if(books){
+    @for(book of books;track book.id){
+        <div class="book-item">
+            <p>{{book.volumeInfo.title}}</p><span> by {{book.volumeInfo.authors}}</span>
+            <button (click)="remove.emit(book.id)" >Remove from Collection</button>
+        </div>
+        }
 }

@@ -9,7 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './book-list.component.css',
 })
 export class BookListComponent {
-  @Input() books: ReadonlyArray<Book> = [];
+  @Input() books: ReadonlyArray<Book> | null = [];
 
   @Output() add = new EventEmitter<string>();
 }

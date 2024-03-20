@@ -1,5 +1,7 @@
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Book } from '../book';
+
 
 @Component({
   selector: 'app-books-collection',
@@ -9,7 +11,11 @@ import { Book } from '../book';
   styleUrl: './books-collection.component.css',
 })
 export class BooksCollectionComponent {
-  @Input() books: ReadonlyArray<Book> = [];
+  @Input() books: ReadonlyArray<Book> | null  = [];
 
   @Output() remove = new EventEmitter<string>();
+ 
+
+
+
 }

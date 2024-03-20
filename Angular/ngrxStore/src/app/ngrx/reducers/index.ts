@@ -9,7 +9,7 @@ export interface AppState {
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  books: fromBooks.bookReducer,
+  books: fromBooks.booksReducer,
   collection: fromCollection.collectionReducer,
 };
 

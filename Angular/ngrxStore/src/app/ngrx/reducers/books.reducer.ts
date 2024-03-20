@@ -1,10 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
-import { Book } from '../../book';
+
 import { BooksApiActions } from '../actions/books.actions';
+import { Book } from '../../book';
 
-export const intialState: ReadonlyArray<Book> = [];
+export const initialState: ReadonlyArray<Book> = [];
 
-export const bookReducer = createReducer(
-  intialState,
+export const booksReducer = createReducer(
+  initialState,
   on(BooksApiActions.retrievedBookList, (_state, { books }) => books)
 );
