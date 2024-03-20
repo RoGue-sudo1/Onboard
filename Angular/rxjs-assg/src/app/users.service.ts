@@ -5,7 +5,7 @@ import { BehaviorSubject, map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class UsersService {
+export class UsersService{
   private userSubjects$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>(
     []
   );
@@ -86,10 +86,12 @@ export class UsersService {
     },
   ];
 
-  constructor() {
+  constructor() { 
     this.userSubjects$.next([...this.users]);
     this.updateUserSubjects();
   }
+  
+ 
 
   getAllUsers(): BehaviorSubject<User[]> {
     return this.userSubjects$;
