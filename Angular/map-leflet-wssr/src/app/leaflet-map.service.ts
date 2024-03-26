@@ -14,36 +14,47 @@ export class LeafletMapService {
     L.marker([28.7041, 77.1025]),
   ];
 
+  markersDuplicate: L.Marker[]=[]
+
+  public handleMarkers(id:number){
+    this.markersDuplicate = []
+    this.markersDuplicate.push(this.markers[id])
+    if(this.markersDuplicate.length>=1){
+      this.addMarkers()
+      this.centerMap()
+    }
+  }
+
   private initializeMap() {
     const baseMapURl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    this.map = L.map('map', { layers: this.markers });
+    this.map = L.map('map', { layers: this.markersDuplicate ,center:[28.457523, 77.026344], zoom: 10
+     });
     L.tileLayer(baseMapURl).addTo(this.map);
   }
 
   private addMarkers() {
-    this.markers.forEach((marker) => marker.addTo(this.map));
+    this.markersDuplicate.forEach((marker) => marker.addTo(this.map));
   }
 
   private centerMap() {
+    if(this.markersDuplicate.length>=1){
     const bounds = L.latLngBounds(
-      this.markers.map((marker) => {
+      this.markersDuplicate.map((marker) => {
         
         return marker.getLatLng();
       })
     );
 
-  
 
     this.map.fitBounds(bounds);
 
-    this.markers.forEach((marker, index) =>
+    this.markersDuplicate.forEach((marker, index) =>
       marker.bindPopup(`Hello popup no. ${index}`).openPopup()
     );
-    this.markers.forEach((marker) => marker.bindTooltip('my tooltip text'));
+    this.markersDuplicate.forEach((marker) => marker.bindTooltip('my tooltip text'));
 
-    
+    }
 
-    // create a red polygon from an array of LatLng points
   }
 
   private moveMarker() {
@@ -51,12 +62,12 @@ export class LeafletMapService {
     //   this.markers.forEach(marker => marker.setLatLng([Math.random()*10,Math.random()*10]));
     //   this.centerMap()
     // },2000)
-   const polygonCoordinates = this.getPolygonCordinates()
+  //  const polygonCoordinates = this.getPolygonCordinates()
 
-   const polygon = L.polygon(polygonCoordinates, {color: 'red'}).addTo(this.map);
-   L.circle([28.457523, 77.026344], {radius: 10000}).addTo(this.map);
+  //  const polygon = L.polygon(polygonCoordinates, {color: 'red'}).addTo(this.map);
+  //  L.circle([28.457523, 77.026344], {radius: 10000}).addTo(this.map);
 
-   this.map.fitBounds(polygon.getBounds());
+  //  this.map.fitBounds(polygon.getBounds());
   }
 
   private getPolygonCordinates():L.LatLng[] {

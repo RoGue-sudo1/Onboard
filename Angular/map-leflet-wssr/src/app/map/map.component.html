@@ -1,3 +1,12 @@
-<div class="map-container">
-    <div id="map"></div>
+<div class="container">
+    <div class="vehicle-container">
+        @for(marker of markers; track marker.index){
+            <div class="vehicle" (click)="handleVehicleButton(marker.index)" >Vehicle {{marker.index+1}} </div>
+        }
+        
+    </div>
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+ 
 </div>
