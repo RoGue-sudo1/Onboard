@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'leaflet-map' title`, () => {
+  it(`should have the 'map-leflet-wssr' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('leaflet-map');
+    expect(app.title).toEqual('map-leflet-wssr');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, leaflet-map');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, map-leflet-wssr');
   });
 });
