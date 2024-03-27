@@ -28,10 +28,8 @@ export class LeafletMapService {
     this.clearExistingMarkers();
     this.polygonMarker.push(this.markers[id]);
     this.markersDuplicate.push(this.markers[id]);
-
     this.addMarkers();
     this.centerMap();
-    // this.moveMarker();
     this.circleMarker();
   }
 
@@ -137,8 +135,6 @@ export class LeafletMapService {
       if (index < this.markers.length) {
         this.markersDuplicate.push(this.markers[index]);
         index++;
-        console.log('index',index)
-
         this.addMarkers();
         const polyline = L.polyline(this.getPolylineCoordinates(), {
           color: 'blue',
@@ -148,8 +144,6 @@ export class LeafletMapService {
         this.map.fitBounds(polyline.getBounds());
       }
     }, 2000);
-
-    // this.map.fitBounds(polyline.getBounds());
   }
 
   private getPolylineCoordinates(): L.LatLng[] {
@@ -158,8 +152,6 @@ export class LeafletMapService {
 
       return L.latLng(marker.getLatLng().lat, marker.getLatLng().lng);
     });
-
-    console.log('polylineMarker', polylineMarker);
 
     return polylineMarker;
   }
