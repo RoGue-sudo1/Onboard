@@ -8,31 +8,25 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './map.component.html',
-  styleUrl: './map.component.css'
+  styleUrl: './map.component.css',
 })
 export class MapComponent {
-
- markers:{marker:Marker<any>,index:number}[];
- active= false
+  markers: { marker: Marker<any>; index: number }[];
+  active = false;
   ngOnInit() {
     this.leafletService.initMap();
   }
 
-  handleVehicleButton(id:number){
- this.leafletService.handleMarkers(id)
+  handleVehicleButton(id: number) {
+    this.leafletService.handleMarkers(id);
   }
 
-  constructor(public leafletService : LeafletMapService){
-    this.markers = this.leafletService.markers.map((marker,index)=>{
+  constructor(public leafletService: LeafletMapService) {
+    this.markers = this.leafletService.markers.map((marker, index) => {
       return {
-        marker:marker,
-        index:index
-      }
-    })
-   
-
-
+        marker: marker,
+        index: index,
+      };
+    });
   }
-
- 
 }

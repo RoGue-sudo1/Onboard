@@ -1,7 +1,7 @@
 <div class="container">
     <div class="vehicle-container">
         @for(marker of markers; track marker.index){
-            <div class="vehicle" (click)="handleVehicleButton(marker.index)" >Vehicle {{marker.index+1}} </div>
+            <div class="vehicle" (click)="handleVehicleButton(marker.index)" >Vehicle Stop {{marker.index+1}} </div>
         }
         
     </div>
