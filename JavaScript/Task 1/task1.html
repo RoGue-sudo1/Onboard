@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./task1.css"></link>
+    <link rel="stylesheet" type="text/css" href="./task1.css">
+    </link>
     <title>Js Task 1</title>
 </head>
+
 <body>
-    <div class="main-container">  
+    <div class="main-container">
         <div class="hex-number">
-           <p>Hexadecimal Number:</p> 
-           <p class="hex-number-text" id="hex-number-text">Click on start button</p>
+            <p>Hexadecimal Number:</p>
+            <p class="hex-number-text" id="hex-number-text">Click on start button</p>
         </div>
         <div class="button-container">
             <button class="start-button" id="start-button">Start</button>
-            <button class="stop-button" id="stop-button" >Stop</button>  
+            <button class="stop-button" id="stop-button">Stop</button>
         </div>
 
-            
+
     </div>
+
+    <!-- Event.stopPraopagation -->
+
     
+
+    <div id="parent-div" style="border: 2px solid black;padding: 20px; cursor: pointer;">
+        <span id="child-div" style="border: 2px solid black;padding: 10px; cursor: pointer;">
+            <button id="myButton">My Button</button>
+       
+         </span>
+    </div>
+
     <script type="text/javascript" src="./task1.js"></script>
 </body>
+
 </html>

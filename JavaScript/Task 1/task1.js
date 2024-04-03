@@ -22,3 +22,28 @@ stopButton.addEventListener("click", () => {
    document.body.style.backgroundColor = "#FFFFFF";
     hexText.textContent ="Click on start button";
 });
+
+const myButton = document.getElementById("myButton");
+const parentDiv = document.getElementById("parent-div");
+const childDiv = document.getElementById("child-div");
+
+myButton.addEventListener("click",(e)=>{
+  console.log('My Button Clicked')
+  e.stopPropagation()
+ 
+})
+
+childDiv.addEventListener("click",(e)=>{
+  console.log('My Div Clicked')
+  e.stopPropagation()
+})
+
+parentDiv.addEventListener("click",(e)=>{
+  console.log('Parent Div Clicked')
+  e.stopPropagation()
+})
+
+
+
+
+
